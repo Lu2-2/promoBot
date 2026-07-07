@@ -1,4 +1,4 @@
-package promobot;
+package bot.promobot;
 
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -21,8 +21,9 @@ public class PromoBot extends TelegramLongPollingBot {
                 sendMsg.setChatId(Long.toString(chatId));
                 sendMsg.setText("Olá");
                 execute(sendMsg);
+
             } catch (TelegramApiException e) {
-                e.getStackTrace();
+                e.printStackTrace();
                 return;
             }
 
