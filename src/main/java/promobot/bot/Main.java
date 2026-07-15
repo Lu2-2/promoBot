@@ -1,4 +1,4 @@
-package bot.promobot;
+package promobot.bot;
 
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -7,11 +7,11 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 public class Main{
     public static void main(String[] args){
-        PromoBot promoBot = new PromoBot();
+        PromoBot promoBot = new PromoBot(); //Instanciamento do bot.
 
         try {
-            TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
-            botsApi.registerBot(promoBot);
+            TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class); //Instanciamento da API do bot.
+            botsApi.registerBot(promoBot); //Registar o bot na API.
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }
