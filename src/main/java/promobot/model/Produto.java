@@ -44,9 +44,7 @@ public class Produto {
         return nomeProduto;
     }
 
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
-    }
+    public void setNomeProduto(String nomeProduto) { this.nomeProduto = nomeProduto; }
 
     public double getPrecoPromocional() {
         return precoPromocional;

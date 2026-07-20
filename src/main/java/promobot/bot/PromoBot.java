@@ -8,40 +8,37 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import promobot.model.Loja;
 import promobot.model.Produto;
+import promobot.service.LegendaDoProduto;
 
 public class PromoBot extends TelegramLongPollingBot {
 
-    SendPhoto sendPhoto = new SendPhoto();
-
     @Override
     public void onUpdateReceived(Update update) {
-        if(update.hasMessage() && update.getMessage().hasText()){
-            //Verifica se tem uma mensagem e se tem texto.
+        if(update.hasMessage() && update.getMessage().hasText()){ //Verifica se tem uma mensagem e se tem texto.
+
+            SendPhoto sendPhoto = new SendPhoto();
+            Produto produto = new Produto(
+                    /* --- PARA TESTE ---
+                    Loja.AMAZON,
+                    "https://m.media-amazon.com/images/I/71Z9DLS29FL._AC_SL1500_.jpg",
+                    "MSI GeForce RTX 3050 LP 6G OC (6GB GDDR6/PCI Express 4.0/1492MHz/14000MHz/Perfil baixo)",
+                    999.00,
+                    "https://link.amazon/B0gBtRtcv" asdadasd*/
+            );
+            LegendaDoProduto legendaProduto = new LegendaDoProduto();
 
             String userMessage = update.getMessage().getText(); //Pega a mensagem.
             Long chatId = update.getMessage().getChatId(); //Pega o Id do chat.
 
-            Produto product = new Produto(
-                    Loja.AMAZON,
-                    "https://m.media-amazon.com/images/I/71Z9DLS29FL._AC_SL1500_.jpg",
-                    "MSI GeForce RTX 3050 6GB GDDR6 | 6G, OC, PCI Express 4.0, 1492MHz, 14000MHz, Perfil Baixo",
-                    999.00,
-                    "https://link.amazon/B0hrlaHMa"
-
-            );
-
             try{
-                String precoFormatado = String.format(Locale.of("pt", "BR"), "%.2f", product.getPrecoPromocional());
-                String legenda = "\uD83D\uDD25 " + product.getNomeProduto() + "\n\n" + "\uD83D\uDCB0 Valor: R$" + precoFormatado + "\n" + product.getLink();
-
                 sendPhoto.setChatId(Long.toString(chatId)); //Adiciona o Id do chat para enviar a mensagem.
-                sendPhoto.setPhoto(new InputFile(product.getFoto()));
-                sendPhoto.setCaption(legenda);
+                sendPhoto.setPhoto(new InputFile(legendaProduto.fotoProduto(produto))); //Função para pegar a foto do link.
+                sendPhoto.setCaption(legendaProduto.legendaFormatada(produto)); //Função para pegar a legenda feita.
 
-                execute(sendPhoto);
+                execute(sendPhoto); //Envia a menssagem.
 
             } catch (TelegramApiException e) {
-                e.printStackTrace(); //Printa o erro.
+                e.printStackTrace(); //Retorna o erro.
                 return;
             }
 
