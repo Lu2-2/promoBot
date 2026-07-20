@@ -23,7 +23,7 @@ public class PromoBot extends TelegramLongPollingBot {
                     "https://m.media-amazon.com/images/I/71Z9DLS29FL._AC_SL1500_.jpg",
                     "MSI GeForce RTX 3050 LP 6G OC (6GB GDDR6/PCI Express 4.0/1492MHz/14000MHz/Perfil baixo)",
                     999.00,
-                    "https://link.amazon/B0gBtRtcv"*/
+                    "https://link.amazon/B0gBtRtcv" asdadasd*/
             );
             LegendaDoProduto legendaProduto = new LegendaDoProduto();
 
