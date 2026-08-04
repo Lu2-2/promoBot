@@ -8,8 +8,8 @@ import java.util.Locale;
 public class LegendaDoProduto {
 
     public String fotoProduto(Produto produto){
-        String fotoProduto = produto.getFoto();
 
+        String fotoProduto = produto.getFoto();
         return fotoProduto;
     }
 

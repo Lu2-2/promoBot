@@ -1,7 +1,10 @@
 package promobot.bot;
 
 import java.util.Locale;
+
+import io.github.cdimascio.dotenv.Dotenv;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -12,22 +15,25 @@ import promobot.service.LegendaDoProduto;
 
 public class PromoBot extends TelegramLongPollingBot {
 
+    private Dotenv dotenv = Dotenv.load();
+
     @Override
     public void onUpdateReceived(Update update) {
-        if(update.hasMessage() && update.getMessage().hasText()){ //Verifica se tem uma mensagem e se tem texto.
 
+        if(update.hasMessage() && update.getMessage().hasText()){ //Verifica se tem uma mensagem e se tem texto.
             SendPhoto sendPhoto = new SendPhoto();
             Produto produto = new Produto(
-                    /* --- PARA TESTE ---
+                    /*
                     Loja.AMAZON,
                     "https://m.media-amazon.com/images/I/71Z9DLS29FL._AC_SL1500_.jpg",
                     "MSI GeForce RTX 3050 LP 6G OC (6GB GDDR6/PCI Express 4.0/1492MHz/14000MHz/Perfil baixo)",
                     999.00,
-                    "https://link.amazon/B0gBtRtcv" asdadasd*/
+                    "https://link.amazon/B0gBtRtcv"*/
             );
             LegendaDoProduto legendaProduto = new LegendaDoProduto();
 
-            String userMessage = update.getMessage().getText(); //Pega a mensagem.
+
+
             Long chatId = update.getMessage().getChatId(); //Pega o Id do chat.
 
             try{
@@ -54,6 +60,6 @@ public class PromoBot extends TelegramLongPollingBot {
     @Override // Verifica se existe
     public String getBotToken(){
         //Token para validação no Telegram
-        return "8987868496:AAHRFgyPafd8JK9ItZyvNLI2xWY58zQXBhc";
+        return dotenv.get("TELEGRAM_TOKEN");
     }
 }
