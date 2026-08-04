@@ -1,6 +1,8 @@
 package promobot.bot;
 
 import java.util.Locale;
+
+import io.github.cdimascio.dotenv.Dotenv;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
@@ -12,6 +14,8 @@ import promobot.model.Produto;
 import promobot.service.LegendaDoProduto;
 
 public class PromoBot extends TelegramLongPollingBot {
+
+    private Dotenv dotenv = Dotenv.load();
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -56,6 +60,6 @@ public class PromoBot extends TelegramLongPollingBot {
     @Override // Verifica se existe
     public String getBotToken(){
         //Token para validação no Telegram
-        return "8987868496:AAHRFgyPafd8JK9ItZyvNLI2xWY58zQXBhc";
+        return dotenv.get("TELEGRAM_TOKEN");
     }
 }

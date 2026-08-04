@@ -1,5 +1,7 @@
 package promobot.integration;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpRequest;
@@ -9,10 +11,11 @@ import java.net.http.HttpResponse;
 public class AmazonService {
 
     private HttpClient client = HttpClient.newHttpClient();
+    private Dotenv dotenv = Dotenv.load();
 
     public void autentificar(){
-        String clientId = "";
-        String clientSecret = "";
+        String clientId = dotenv.get("AMAZON_CLIENT_ID");
+        String clientSecret = dotenv.get("AMAZON_CLIENT_SECRET");
         String body = String.format("{\"grant_type\": \"client_credentials\", \"client_id\": \"%s\", \"client_secret\": \"%s\", \"scope\": \"creatorsapi::default\"}", clientId, clientSecret);
 
         HttpRequest request = HttpRequest.newBuilder()
