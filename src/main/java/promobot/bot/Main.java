@@ -4,7 +4,7 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import promobot.integration.AmazonService;
-import promobot.model.TokenResponse;
+import promobot.model.SearchResponse;
 
 
 public class Main{
