@@ -3,7 +3,7 @@ package promobot.integration;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cdimascio.dotenv.Dotenv;
 import promobot.model.SearchResponse;
-import promobot.model.TokenResponse;
+import promobot.model.AmazonTokenResponse;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpRequest;
@@ -15,7 +15,7 @@ public class AmazonService {
     private HttpClient client = HttpClient.newHttpClient();
     private Dotenv dotenv = Dotenv.load();
 
-    public TokenResponse autentificar(){
+    public AmazonTokenResponse autentificar(){
         String clientId = dotenv.get("AMAZON_CLIENT_ID");
         String clientSecret = dotenv.get("AMAZON_CLIENT_SECRET");
         String body = String.format("{\"grant_type\": \"client_credentials\", \"client_id\": \"%s\", \"client_secret\": \"%s\", \"scope\": \"creatorsapi::default\"}", clientId, clientSecret);
@@ -35,7 +35,7 @@ public class AmazonService {
             }
 
             var objectMapper = new ObjectMapper();
-            var token = objectMapper.readValue(bodyResponse, TokenResponse.class);
+            var token = objectMapper.readValue(bodyResponse, AmazonTokenResponse.class);
             return token;
 
         } catch (IOException | InterruptedException e) {

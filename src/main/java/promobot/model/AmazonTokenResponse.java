@@ -2,7 +2,7 @@ package promobot.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class TokenResponse {
+public class AmazonTokenResponse {
 
     @JsonProperty("access_token")
     private String accessToken;
@@ -45,7 +45,7 @@ public class TokenResponse {
     }
     
 
-    public TokenResponse(){
+    public AmazonTokenResponse(){
 
     }
 

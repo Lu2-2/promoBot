@@ -1,19 +1,19 @@
 package promobot.model;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AliexpressTokenResponse {
+public class AliexpressRefreshToken {
 
     @JsonProperty("access_token")
     private String accessToken;
     @JsonProperty("refresh_token")
     private String refreshToken;
-    @JsonProperty("expires_in")
-    private Long expiresIn;
     @JsonProperty("user_id")
     private String userId;
+    @JsonProperty("refresh_expires_in")
+    private Long refreshExpires;
+
 
     public String getAccessToken() {
         return accessToken;
@@ -31,12 +31,12 @@ public class AliexpressTokenResponse {
         this.refreshToken = refreshToken;
     }
 
-    public Long getExpiresIn() {
-        return expiresIn;
+    public Long getRefreshExpires() {
+        return refreshExpires;
     }
 
-    public void setExpiresIn(Long expiresIn) {
-        this.expiresIn = expiresIn;
+    public void setRefreshExpires(Long refreshExpires) {
+        this.refreshExpires = refreshExpires;
     }
 
     public String getUserId() {
@@ -46,6 +46,4 @@ public class AliexpressTokenResponse {
     public void setUserId(String userId) {
         this.userId = userId;
     }
-
-
 }
