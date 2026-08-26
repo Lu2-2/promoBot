@@ -1,4 +1,4 @@
-package promobot.model;
+package promobot.model.amazon;
 
 public class Item {
 	private String detailPageURL;

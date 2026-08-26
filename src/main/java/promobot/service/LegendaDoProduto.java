@@ -1,7 +1,7 @@
 package promobot.service;
 
 import promobot.model.Loja;
-import promobot.model.Produto;
+import promobot.model.amazon.Produto;
 
 import java.util.Locale;
 

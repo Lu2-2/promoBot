@@ -2,7 +2,7 @@ package promobot.integration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cdimascio.dotenv.Dotenv;
-import promobot.model.SearchResponse;
+import promobot.model.amazon.SearchResponse;
 import promobot.model.AmazonTokenResponse;
 import java.io.IOException;
 import java.net.URI;
@@ -48,7 +48,7 @@ public class AmazonService {
 
         var accessToken = autentificar().getAccessToken();
         String partnerTag = dotenv.get("AMAZON_PARTNER_TAG");
-        String body = String.format("{\"partnerTag\": \"%s\",\"keywords\": \"%s\",\"marketplace\": \"www.amazon.com.br\",\"resources\": [\"images.primary.medium\", \"itemInfo.title\", \"offersV2.listings.price\"]}", partnerTag , keywords);
+        String body = String.format("{\"partnerTag\": \"%s\", \"searchIndex\": \"Electronics\",\"keywords\": \"%s\",\"marketplace\": \"www.amazon.com.br\",\"resources\": [\"images.primary.medium\", \"itemInfo.title\", \"offersV2.listings.price\"]}", partnerTag , keywords);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://creatorsapi.amazon/catalog/v1/searchItems"))

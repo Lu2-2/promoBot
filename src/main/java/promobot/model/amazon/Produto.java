@@ -1,4 +1,6 @@
-package promobot.model;
+package promobot.model.amazon;
+
+import promobot.model.Loja;
 
 public class Produto {
 
