@@ -3,8 +3,6 @@ package promobot.bot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
-import promobot.integration.AmazonService;
-import promobot.model.SearchResponse;
 
 
 public class Main{
@@ -19,7 +17,26 @@ public class Main{
             throw new RuntimeException(e);
         }
 
+        /* Produto Amazon:
+            Medium -> url; Link da imagem
+            Title -> displayValue; Titulo
+            Money -> displayAmount; Valor com R$
+            Item -> detailPageURL; Link
+
+        */
 
 
+        /* Teste: Renovação de Token Aliexpress
+        AliexpressService aliexpressService = new AliexpressService();
+        AliexpressRefreshToken refreshToken = null;
+        try {
+            refreshToken = aliexpressService.renovarToken("50001200627rvHtJes9nEpyqxb8YK0CKRdWRDZF115cce43cq7sy2ElguJ8c5vqoTNYv");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(refreshToken.getAccessToken());
+        System.out.println(refreshToken.getRefreshToken());
+
+        */
     }
 }

@@ -1,16 +1,12 @@
 package promobot.bot;
 
-import java.util.Locale;
-
 import io.github.cdimascio.dotenv.Dotenv;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import promobot.model.Loja;
-import promobot.model.Produto;
+import promobot.model.amazon.Produto;
 import promobot.service.LegendaDoProduto;
 
 public class PromoBot extends TelegramLongPollingBot {
