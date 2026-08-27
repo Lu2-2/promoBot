@@ -2,8 +2,8 @@ package promobot.bot;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
-import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import promobot.model.amazon.Produto;
@@ -18,13 +18,15 @@ public class PromoBot extends TelegramLongPollingBot {
 
         if(update.hasMessage() && update.getMessage().hasText()){ //Verifica se tem uma mensagem e se tem texto.
             SendPhoto sendPhoto = new SendPhoto();
+            SendMessage sendMessage = new SendMessage();
             Produto produto = new Produto(
-                    /*
+                    /* Modelo teste
                     Loja.AMAZON,
                     "https://m.media-amazon.com/images/I/71Z9DLS29FL._AC_SL1500_.jpg",
                     "MSI GeForce RTX 3050 LP 6G OC (6GB GDDR6/PCI Express 4.0/1492MHz/14000MHz/Perfil baixo)",
                     999.00,
-                    "https://link.amazon/B0gBtRtcv"*/
+                    "https://link.amazon/B0gBtRtcv"
+                    */
             );
             LegendaDoProduto legendaProduto = new LegendaDoProduto();
 
@@ -33,11 +35,20 @@ public class PromoBot extends TelegramLongPollingBot {
             Long chatId = update.getMessage().getChatId(); //Pega o Id do chat.
 
             try{
+                sendMessage.setChatId(Long.toString(chatId));
+
+                sendMessage.setText("Olá! Sou o bot de promoções do TecPromos.");
+                execute(sendMessage);
+                sendMessage.setText("Fui desenvolvido para compartilhar as melhores promoções todos os dias.");
+                execute(sendMessage);
+
+                /* Envia a menssagem com foto
                 sendPhoto.setChatId(Long.toString(chatId)); //Adiciona o Id do chat para enviar a mensagem.
                 sendPhoto.setPhoto(new InputFile(legendaProduto.fotoProduto(produto))); //Função para pegar a foto do link.
                 sendPhoto.setCaption(legendaProduto.legendaFormatada(produto)); //Função para pegar a legenda feita.
 
                 execute(sendPhoto); //Envia a menssagem.
+                 */
 
             } catch (TelegramApiException e) {
                 e.printStackTrace(); //Retorna o erro.
